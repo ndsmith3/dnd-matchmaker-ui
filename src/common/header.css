@@ -1,0 +1,29 @@
+.Header {
+  background-color: #282c34;
+  flex: 0 0 100%;
+  padding: 10px;
+  overflow: auto;
+  height: fit-content;
+}
+
+.HomeButton {
+  float: left;
+}
+
+.HomeButton img {
+  width: 50px;
+  height: 50px;
+}
+
+.RegisterButton {
+  float: right;
+}
+
+.LoginButton {
+  float: right;
+  margin-left: 10px;
+}
+
+#a {
+  size: 1px;
+}

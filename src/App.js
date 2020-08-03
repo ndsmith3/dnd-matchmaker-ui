@@ -1,27 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Axios from 'axios';
+import Header from './common/header';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1> Hello World! </h1>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+Axios.defaults.baseURL = "http://localhost:4000/api/v1"
+Axios.defaults.withCredentials = true
+
+const Home = lazy(() => import('./home/home'));
+const RegisterForm = lazy(() => import('./register/register'));
+const Login = lazy(() => import('./login/login'));
+
+const App = () => (
+  <Router>
+    <Header />
+    <Suspense fallback={<div>Loading...</div>}>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        <Route exact path="/register" component={RegisterForm}/>
+        <Route exact path="/login" component={Login}/>
+      </Switch>
+    </Suspense>
+  </Router>
+);
 
 export default App;
